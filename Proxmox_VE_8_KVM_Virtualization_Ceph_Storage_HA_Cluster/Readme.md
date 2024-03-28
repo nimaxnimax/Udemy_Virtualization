@@ -60,6 +60,8 @@ Proxmox VE Advantages
 
 **********
 
+![alt text](image-2.png)
+
 Proxmox VE Disadvantages
 
 While Proxmox VE offers many advantages, there are also some potential disadvantages to consider:
@@ -81,6 +83,8 @@ While Proxmox VE offers a powerful and flexible virtualization platform with man
 
 **********
 
+![alt text](image-3.png)
+
 Licensing of Proxmox VE
 
 - **Open-source license**: Proxmox VE is distributed under the GNU Affero General Public License, version 3 (GNU AGPLv3). This means that it is open-source software, and users have the freedom to use, modify, and distribute the software according to the terms of the license.
@@ -99,6 +103,8 @@ Proxmox VE offers users the flexibility to choose between using the free, commun
 
 
 **********
+
+![alt text](image-4.png)
 
 Comparison of Proxmox VE Virtualization with XenServer Hyper-V VMware ESXi
 
@@ -136,6 +142,8 @@ The choice between Proxmox VE, XenServer, Hyper-V, and VMware ESXi depends on fa
 
 
 **********
+
+
 
 Main ports and protocols used by Proxmox VE
 
