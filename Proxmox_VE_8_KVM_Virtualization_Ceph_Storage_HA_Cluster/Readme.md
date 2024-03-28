@@ -17,6 +17,8 @@ https://www.udemy.com/user/adrian-fischer-infotech/
 
 **********
 
+![alt text](image.png)
+
 Proxmox VE
 
 - Proxmox VE (Virtual Environment) is an open-source virtualization management platform.
@@ -32,6 +34,8 @@ Proxmox VE
 
 
 **********
+
+![alt text](image-1.png)
 
 Proxmox VE Advantages
 
