@@ -143,7 +143,7 @@ The choice between Proxmox VE, XenServer, Hyper-V, and VMware ESXi depends on fa
 
 **********
 
-
+![alt text](image-5.png)
 
 Main ports and protocols used by Proxmox VE
 
@@ -178,6 +178,8 @@ These ports and protocols are essential for managing and accessing various aspec
 
 
 **********
+
+![alt text](image-6.png)
 
 Requirements
 
@@ -218,6 +220,8 @@ These minimum requirements are essential for installing and running Proxmox VE o
 
 **********
 
+![alt text](image-7.png)
+
 Ceph Storage
 
 - **Distributed Storage**: Ceph is a distributed storage system designed for scalability, reliability, and performance. It distributes data across multiple nodes in a cluster, providing fault tolerance and high availability.
@@ -243,6 +247,8 @@ Ceph Storage
 
 **********
 
+![alt text](image-8.png)
+
 Advantages of using Ceph as a storage solution
 
 - **Scalability**: Ceph is highly scalable and can scale from small clusters to large-scale deployments seamlessly. It can accommodate the growth of data storage needs without downtime or disruption, making it suitable for organizations of all sizes.
@@ -265,6 +271,8 @@ Advantages of using Ceph as a storage solution
 
 
 **********
+
+![alt text](image-9.png)
 
 KVM (Kernel-based Virtual Machine) virtualization
 
@@ -290,6 +298,8 @@ KVM (Kernel-based Virtual Machine) virtualization
 
 
 **********
+
+![alt text](image-10.png)
 
 Proxmox VE works with KVM and Ceph storage
 
@@ -321,6 +331,8 @@ Proxmox VE works with KVM and Ceph storage
 
 
 **********
+
+![alt text](image-11.png)
 
 How to Download and Install Proxmox VE?
 
