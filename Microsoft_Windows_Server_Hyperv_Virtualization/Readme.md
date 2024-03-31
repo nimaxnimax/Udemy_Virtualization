@@ -13,6 +13,22 @@ https://www.udemy.com/user/adrian-fischer-infotech/
 
 Hyper-V
 
+- **Windows Server**: Microsoft's operating system designed for server environments.
+- **Hyper-V**: Microsoft's native hypervisor platform for virtualization.
+- **Features**:
+  - Virtualization: Allows multiple operating systems to run concurrently on a single physical machine.
+  - Hardware virtualization support: Utilizes hardware features for efficient virtual machine operation.
+  - Isolation: Each virtual machine operates independently, ensuring security and stability.
+  - Management tools: Provides tools for managing virtual machines, such as Hyper-V Manager and PowerShell commands.
+  - Live migration: Enables moving running virtual machines between hosts with minimal downtime.
+  - Snapshots: Allows capturing the current state of a virtual machine for backup or testing purposes.
+- **Integration**: Seamlessly integrates with other Microsoft technologies, such as Active Directory and System Center.
+- **Scalability**: Supports scaling from small businesses to large enterprises, accommodating varying workloads.
+- **Compatibility**: Compatible with various operating systems, including Windows, Linux, and others.
+- **High availability**: Offers features for ensuring uptime and minimizing disruptions through redundancy and failover capabilities.
+- **Security**: Includes features for securing virtual machines and the virtualization infrastructure.
+- **Licensing**: Typically included with Windows Server licenses, with different editions offering varying levels of functionality and scalability.
+
 **********
 
 Advantages
