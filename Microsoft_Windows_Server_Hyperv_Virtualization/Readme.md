@@ -43,7 +43,7 @@ Hyperv on Windows 2016 + 2019 + 2022 + 2025 - Comparison
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab2
+Hyperv Cluster + Storage Installation and Configuration Lab1
 - Install and Prepare DC - Windows Server 2016/2019/2022 (Example: 192.168.255.1 - dc1.domain.local)
 - Install and Prepare Storage - Windows Server 2016/2019/2022 (Example: 192.168.255.2 - storage.domain.local)
 - Install and Prepare Hyperv1 - Windows Server 2016 (Example: 192.168.255.11 - hyperv1.domain.local)
