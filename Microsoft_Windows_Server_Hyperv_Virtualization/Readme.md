@@ -221,26 +221,6 @@ Please note that the information for Hyper-V on Windows Server 2025 is speculati
 
 **********
 
-Cluster with Windows Server Hyperv 2016/2019/2022/2025
-
-It is possible to have a Hyper-V cluster with mixed versions of Windows Server, such as 2016 and 2019. This feature is called "mixed-OS mode" and is supported by Hyper-V in Windows Server. 
-
-However, there are some considerations and limitations you should be aware of:
-
-1. **Functional Level**: The cluster functional level must be set to the oldest version of Windows Server in the cluster. For example, if you have a mix of Windows Server 2016 and 2019, the functional level must be set to Windows Server 2016.
-
-2. **Feature Compatibility**: Some features introduced in Windows Server 2019 might not be available if the cluster functional level is set to Windows Server 2016. This includes certain storage features and security enhancements.
-
-3. **Node Compatibility**: All nodes in the cluster should meet the minimum requirements for the version of Windows Server they are running. For example, a node running Windows Server 2016 should meet the hardware and software requirements for Windows Server 2016.
-
-4. **Rolling Upgrade**: You can perform a rolling upgrade to upgrade the nodes in the cluster from an older version of Windows Server to a newer version while maintaining cluster functionality. This allows you to gradually transition from one version to another without downtime.
-
-5. **Management Compatibility**: While you can manage a mixed-version Hyper-V cluster from a newer version of Windows Server (e.g., managing a cluster with Windows Server 2016 and 2019 nodes from a Windows Server 2019 machine), some advanced management features may only be available when using the latest version of Windows Server.
-
-It's important to thoroughly review the documentation and best practices provided by Microsoft when setting up and managing a mixed-version Hyper-V cluster to ensure compatibility and optimal performance.
-
-**********
-
 Hyperv Cluster + Storage Installation and Configuration Lab1
 - Install and Prepare DC - Windows Server 2016/2019/2022 (Example: 192.168.255.1 - dc1.domain.local)
 - Install and Prepare Storage - Windows Server 2016/2019/2022 (Example: 192.168.255.2 - storage.domain.local)
