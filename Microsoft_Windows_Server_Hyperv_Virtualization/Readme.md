@@ -221,7 +221,7 @@ Please note that the information for Hyper-V on Windows Server 2025 is speculati
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab1
+Hyperv Cluster + Storage Installation and Configuration
 - Install and Prepare DC - Windows Server 2016/2019/2022 (Example: 192.168.255.1 - dc1.domain.local)
 - Install and Prepare Storage - Windows Server 2016/2019/2022 (Example: 192.168.255.2 - storage.domain.local)
 - Install and Prepare Hyperv1 - Windows Server 2016 (Example: 192.168.255.11 - hyperv1.domain.local)
@@ -232,17 +232,17 @@ Hyperv Cluster + Storage Installation and Configuration Lab1
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab2
+Hyperv Cluster + Storage Installation and Configuration
 - Install DC - Windows Server 2016/2019/2022 (Example: 192.168.255.1 - dc1.domain.local)
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab3
+Hyperv Cluster + Storage Installation and Configuration
 - Install Storage - Windows Server 2016/2019/2022 (Example: 192.168.255.2 - storage.domain.local)
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab4
+Hyperv Cluster + Storage Installation and Configuration
 - Install Hyperv1 - Windows Server 2016 (Example: 192.168.255.11 - hyperv1.domain.local)
 - Install Hyperv2 - Windows Server 2016 (Example: 192.168.255.12 - hyperv2.domain.local)
 - Install Hyperv3 - Windows Server 2019 (Example: 192.168.255.13 - hyperv3.domain.local)
@@ -251,35 +251,59 @@ Hyperv Cluster + Storage Installation and Configuration Lab4
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab5
+Hyperv Cluster + Storage Installation and Configuration
 - Storage Configuration >> iSCSI >> Storage - Windows Server 2016/2019/2022 (Example: 192.168.255.2 - storage.domain.local)
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab6
+Hyperv Cluster + Storage Installation and Configuration
 - Storage Configuration >> iSCSI >> Hyperv1 - Windows Server 2016 (Example: 192.168.255.11 - hyperv1.domain.local)
 - Storage Configuration >> iSCSI >> Hyperv2 - Windows Server 2016 (Example: 192.168.255.12 - hyperv2.domain.local)
+
+**********
+
+Hyperv Cluster + Storage Installation and Configuration
 - Storage Configuration >> iSCSI >> Hyperv3 - Windows Server 2019 (Example: 192.168.255.13 - hyperv3.domain.local)
+
+**********
+
+Hyperv Cluster + Storage Installation and Configuration
 - Storage Configuration >> iSCSI >> Hyperv4 - Windows Server 2022 (Example: 192.168.255.14 - hyperv4.domain.local)
+
+**********
+
+Hyperv Cluster + Storage Installation and Configuration
 - Storage Configuration >> iSCSI >> Hyperv5 - Windows Server 2025 (Example: 192.168.255.15 - hyperv5.domain.local)
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab7
+Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv1 - Windows Server 2016 (Example: 192.168.255.11 - hyperv1.domain.local)
 - Hyperv Cluster Configuration >> Hyperv2 - Windows Server 2016 (Example: 192.168.255.12 - hyperv2.domain.local)
+
+**********
+
+Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv3 - Windows Server 2019 (Example: 192.168.255.13 - hyperv3.domain.local)
+
+**********
+
+Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv4 - Windows Server 2022 (Example: 192.168.255.14 - hyperv4.domain.local)
+
+**********
+
+Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv5 - Windows Server 2025 (Example: 192.168.255.15 - hyperv5.domain.local)
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab8
-- VM Config and Test >> Hyperv Cluster >> Hyperv1/2/3/4/5
+Hyperv Cluster + Storage Installation and Configuration
+- VM Config and Test >> Hyperv Cluster >> Hyperv1/2
 
 **********
 
-Hyperv Cluster + Storage Installation and Configuration Lab9
-- Migration and HA Test >> Hyperv Cluster >> Hyperv1/2/3/4/5
+Hyperv Cluster + Storage Installation and Configuration
+- Migration and HA Test >> Hyperv Cluster >> Hyperv1/2s
 
 **********
