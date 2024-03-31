@@ -1,4 +1,6 @@
 
+![alt text](cover.jpg)
+
 Udemy Course >> Microsoft Hyper-V Windows Server Hyper V Virtualization
 
 **********
@@ -8,6 +10,13 @@ https://github.com/nimaxnimax/Udemy_Virtualization
 
 Instructor & Courses >> 
 https://www.udemy.com/user/adrian-fischer-infotech/
+
+
+**********
+
+![alt text](lab_diagram.jpg)
+
+Lab Diagram
 
 **********
 
@@ -218,6 +227,12 @@ Hyperv on Windows 2016 + 2019 + 2022 + 2025 - Comparison
 - Potential advancements in containerization and microservices architecture, integrating Hyper-V with evolving application deployment paradigms.
 
 Please note that the information for Hyper-V on Windows Server 2025 is speculative and based on anticipated trends and advancements in technology. Actual features and capabilities may vary based on Microsoft's development and release plans.
+
+**********
+
+![alt text](lab_diagram.jpg)
+
+Lab Diagram
 
 **********
 
