@@ -300,25 +300,29 @@ Hyperv Cluster + Storage Installation and Configuration
 
 Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv3 - Windows Server 2019 (Example: 192.168.255.13 - hyperv3.domain.local)
+- Hyperv Cluster Configuration >> Hyperv6 - Windows Server 2019 (Example: 192.168.255.16 - hyperv3.domain.local)
 
 **********
 
 Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv4 - Windows Server 2022 (Example: 192.168.255.14 - hyperv4.domain.local)
+- Hyperv Cluster Configuration >> Hyperv7 - Windows Server 2022 (Example: 192.168.255.17 - hyperv4.domain.local)
 
 **********
 
 Hyperv Cluster + Storage Installation and Configuration
 - Hyperv Cluster Configuration >> Hyperv5 - Windows Server 2025 (Example: 192.168.255.15 - hyperv5.domain.local)
+- Hyperv Cluster Configuration >> Hyperv8 - Windows Server 2025 (Example: 192.168.255.18 - hyperv5.domain.local)
 
 **********
 
 Hyperv Cluster + Storage Installation and Configuration
-- VM Config and Test >> Hyperv Cluster >> Hyperv1/2
+- VM Config and Test >> Hyperv Cluster
 
 **********
 
 Hyperv Cluster + Storage Installation and Configuration
-- Migration and HA Test >> Hyperv Cluster >> Hyperv1/2s
+- Migration and HA Test >> Hyperv Cluster
 
 **********
+
