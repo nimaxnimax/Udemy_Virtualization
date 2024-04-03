@@ -103,7 +103,7 @@ After completing these steps, VirtualBox should be successfully installed on you
 
 **********
 
-How to Install and Operating System on Virtual Box and How to Configure?!
+How to Install Operating Systems on Virtual Box and How to Configure?!
 
 **Installing an Operating System on VirtualBox:**
 
