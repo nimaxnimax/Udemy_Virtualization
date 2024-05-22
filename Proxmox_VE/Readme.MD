@@ -468,6 +468,53 @@ Replace `<new-vmid>` with the VMID of the newly created container.
 
 These commands allow you to clone a new container from an existing template and start it in Proxmox VE.
 
+When creating a Proxmox container with the `pct create` command, if you are unable to log in with the root account and the password specified, there could be a few possible issues. Here are some steps to troubleshoot and resolve the issue:
+
+1. **Verify the Command Syntax and Parameters**:
+   Ensure that your command is correctly formed and includes all necessary parameters. Your command looks correct, but it should be double-checked for any typos or syntax errors.
+
+2. **Check the Password**:
+   Make sure the password specified (`-password mypassword`) meets any complexity requirements. Some templates or configurations might require a more complex password.
+
+3. **Review Container Configuration**:
+   After creating the container, inspect its configuration to verify that the password was set correctly. You can do this by running:
+   ```sh
+   pct config 110
+   ```
+   Look for any anomalies or missing configurations.
+
+4. **Check the Template**:
+   Ensure that the template (`local:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz`) is valid and not corrupted. Sometimes, a corrupted template can lead to unexpected behavior.
+
+5. **Console Access**:
+   Try accessing the container via the Proxmox console. This can help determine if the issue is with the network access or SSH configuration. Use the Proxmox web interface to open a console session for the container.
+
+6. **Check SSH Configuration**:
+   If you are trying to access the container via SSH, ensure that SSH is properly configured and running inside the container. You might need to check the SSH service status by accessing the container's console.
+
+7. **Set a Password via Console**:
+   As a workaround, you can manually set the root password from within the container using the console:
+   ```sh
+   pct enter 110
+   passwd
+   ```
+   This will allow you to set a new root password directly.
+
+8. **Container Logs**:
+   Check the container logs for any errors or warnings that might provide clues about why you cannot log in. You can view the logs by running:
+   ```sh
+   pct log 110
+   ```
+
+9. **Network Configuration**:
+   If you are trying to log in over the network, ensure that the container’s network configuration is correct and that it has connectivity.
+
+If none of these steps resolve the issue, you might want to consider deleting the container and recreating it with a more verbose output to capture any potential issues during the creation process:
+```sh
+pct create 110 local:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz -hostname new-container -storage local-lvm -password mypassword --verbose
+```
+This can provide additional details that might help in diagnosing the problem.
+
 If the IP addresses are not showing in the `pct list` output, it's likely that the containers either don't have IP addresses assigned or are not connected to the network properly. Here's what you can do to troubleshoot and resolve the issue:
 
 ### 1. Check Network Configuration
