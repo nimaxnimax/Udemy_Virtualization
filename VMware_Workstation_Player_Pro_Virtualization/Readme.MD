@@ -1194,3 +1194,65 @@ These features of VMware Workstation Pro offer significant advantages for managi
 By leveraging these features, users can ensure their virtual environments are both powerful and secure, enhancing overall productivity and peace of mind.
 
 
+### Why Install VMware Tools on Windows Server?
+
+Installing VMware Tools on a Windows Server virtual machine (VM) is essential for several reasons:
+
+#### 1. **Enhanced Performance**
+   - **Drivers:** VMware Tools provides optimized drivers for better performance, including improved network and graphics performance.
+   - **Improved Responsiveness:** Enhances overall VM responsiveness and reduces lag.
+
+#### 2. **Better Management**
+   - **Synchronize Guest Time with Host:** Keeps the VM’s clock synchronized with the host, crucial for time-sensitive applications.
+   - **Guest OS Shutdown:** Allows for clean shutdowns and reboots of the VM from the VMware management interface.
+
+#### 3. **Improved Functionality**
+   - **Seamless Mouse Integration:** Removes the need to capture/release the mouse pointer, allowing seamless movement between the host and VM.
+   - **Shared Folders:** Enables shared folders for easy file transfer between the host and VM.
+   - **Copy and Paste/Drag and Drop:** Allows copying and pasting text, graphics, and files between the host and VM.
+
+#### 4. **Enhanced User Experience**
+   - **Better Display Resolution:** Provides better resolution options and support for multiple monitors.
+   - **Automatic Display Resizing:** Automatically adjusts the VM display resolution when resizing the VM window.
+
+#### 5. **Support for Advanced VMware Features**
+   - **Snapshots and Backups:** Improved support for snapshots and backups, ensuring data integrity and easier recovery.
+   - **Guest Customization:** Supports guest OS customization options during cloning and template deployment.
+
+### How to Install VMware Tools on Windows Server
+
+#### Step-by-Step Guide
+
+1. **Power On the VM:**
+   - Start your Windows Server VM in VMware Workstation Pro.
+
+2. **Initiate VMware Tools Installation:**
+   - In the VMware Workstation Pro menu, go to `VM` -> `Install VMware Tools` (or `Reinstall VMware Tools` if previously installed).
+
+3. **Mount VMware Tools ISO:**
+   - VMware Workstation Pro will mount the VMware Tools ISO to the VM’s CD/DVD drive.
+
+4. **Run the Installer:**
+   - Inside the Windows Server VM, open `File Explorer`.
+   - Navigate to the `CD/DVD drive` (usually labeled `VMware Tools`).
+   - Double-click `setup.exe` to start the VMware Tools installation wizard.
+
+5. **Follow the Installation Wizard:**
+   - **Welcome Screen:** Click `Next`.
+   - **Setup Type:** Choose `Typical` for most cases, or `Complete` for all components. Click `Next`.
+   - **Ready to Install:** Click `Install` to begin the installation.
+   - **Driver Installation:** If prompted, allow the installation of any device drivers.
+
+6. **Complete the Installation:**
+   - Once the installation is complete, click `Finish`.
+   - You may be prompted to restart the VM. Click `Yes` to reboot.
+
+7. **Verify Installation:**
+   - After the VM restarts, check that VMware Tools is running by looking for the VMware Tools icon in the system tray.
+   - You can also verify in `Control Panel` -> `Programs and Features` to ensure VMware Tools is listed.
+
+### Summary
+
+Installing VMware Tools on a Windows Server VM is critical for enhancing performance, improving manageability, and enabling advanced features. The process involves mounting the VMware Tools ISO, running the installer, and following the wizard to complete the installation. The benefits include better performance, seamless integration, and enhanced user experience, making it a necessary step for optimal VM operation.
+
+
