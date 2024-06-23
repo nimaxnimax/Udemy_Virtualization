@@ -1036,3 +1036,41 @@ When creating an Azure Virtual Machine through the Azure portal, each of these c
 Using Azure CLI, you can efficiently manage Azure Virtual Machines by listing them, retrieving detailed configurations, and creating new VMs with specific configurations tailored to your needs. The commands provided offer essential capabilities to get started with VM management using Azure CLI. Adjust parameters such as VM size, image, username, password, and resource group to fit your specific requirements.
 
 
+To install Homebrew on macOS, follow these steps:
+
+1. **Open Terminal**:
+   - You can find Terminal in the Applications > Utilities folder, or you can use Spotlight by pressing `Cmd + Space` and typing "Terminal".
+
+2. **Run the Installation Command**:
+   - Copy and paste the following command into the Terminal and press `Enter`:
+
+     ```sh
+     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+     ```
+
+3. **Follow the On-Screen Instructions**:
+   - The script will prompt you to enter your password (this is your macOS user password).
+   - You may also need to press `Enter` to continue or type `y` (for yes) when prompted.
+
+4. **Add Homebrew to your PATH**:
+   - Once the installation is complete, you may need to add Homebrew to your PATH. The installation script will usually provide you with the necessary command to do this. It will look something like this:
+
+     ```sh
+     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/yourusername/.zprofile
+     eval "$(/opt/homebrew/bin/brew shellenv)"
+     ```
+
+   - Copy and paste these commands into your Terminal and press `Enter`.
+
+5. **Verify Installation**:
+   - To make sure Homebrew is installed correctly, you can run:
+
+     ```sh
+     brew --version
+     ```
+
+   - This command should return the version of Homebrew that is installed.
+
+Now, Homebrew should be installed and ready to use on your macOS system. You can start installing packages using the `brew install <package>` command.
+
+
