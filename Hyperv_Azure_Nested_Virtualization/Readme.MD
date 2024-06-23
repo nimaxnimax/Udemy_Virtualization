@@ -611,3 +611,428 @@ Creating a virtual network in Azure involves selecting appropriate subscription,
 By following the steps outlined, you can easily set up Azure CLI on your preferred operating system and begin managing your Azure resources more effectively.
 
 
+### Using Azure CLI on Windows for Managing Azure Resources
+
+#### Logging in with Azure CLI
+
+1. **Open Command Prompt or PowerShell**.
+2. **Login**:
+   ```sh
+   az login
+   ```
+   - This command will open a web browser and prompt you to log in with your Azure credentials.
+   - After successful login, the CLI will display your account details in the terminal.
+
+#### Checking Subscription List and Current Subscription
+
+1. **List Subscriptions**:
+   ```sh
+   az account list --output table
+   ```
+   - This command lists all the subscriptions associated with your Azure account in a table format.
+
+2. **Set Current Subscription**:
+   ```sh
+   az account set --subscription "SUBSCRIPTION_NAME_OR_ID"
+   ```
+   - Replace `"SUBSCRIPTION_NAME_OR_ID"` with the name or ID of the subscription you want to set as the current subscription.
+
+3. **Check Current Subscription**:
+   ```sh
+   az account show --output table
+   ```
+   - This command displays details of the current subscription in use.
+
+#### Checking Resource Groups and Virtual Networks
+
+1. **List Resource Groups**:
+   ```sh
+   az group list --output table
+   ```
+   - This command lists all resource groups in your current subscription.
+
+2. **List Virtual Networks**:
+   ```sh
+   az network vnet list --output table
+   ```
+   - This command lists all virtual networks in your current subscription.
+
+#### Creating a Resource Group with Azure CLI
+
+1. **Create a Resource Group**:
+   ```sh
+   az group create --name MyResourceGroup --location eastus
+   ```
+   - Replace `MyResourceGroup` with your desired resource group name.
+   - Replace `eastus` with your desired region.
+
+#### Creating a Virtual Network with Azure CLI
+
+1. **Create a Virtual Network**:
+   ```sh
+   az network vnet create --resource-group MyResourceGroup --name MyVNet --address-prefix 10.0.0.0/16 --subnet-name MySubnet --subnet-prefix 10.0.1.0/24
+   ```
+   - Replace `MyResourceGroup` with the name of your resource group.
+   - Replace `MyVNet` with your desired virtual network name.
+   - Replace `10.0.0.0/16` with your desired address space for the VNet.
+   - Replace `MySubnet` with your desired subnet name.
+   - Replace `10.0.1.0/24` with your desired subnet address range.
+
+#### Checking the Created Resource Group and Virtual Network
+
+1. **Check the Resource Group**:
+   ```sh
+   az group show --name MyResourceGroup --output table
+   ```
+   - This command displays details of the specified resource group.
+
+2. **Check the Virtual Network**:
+   ```sh
+   az network vnet show --resource-group MyResourceGroup --name MyVNet --output table
+   ```
+   - This command displays details of the specified virtual network.
+
+### Summary
+
+Using the Azure CLI on Windows, you can effectively manage your Azure resources with the following steps:
+- **Login**: `az login`
+- **Check Subscriptions**:
+  - List: `az account list --output table`
+  - Set: `az account set --subscription "SUBSCRIPTION_NAME_OR_ID"`
+  - Show: `az account show --output table`
+- **Manage Resource Groups**:
+  - List: `az group list --output table`
+  - Create: `az group create --name MyResourceGroup --location eastus`
+  - Show: `az group show --name MyResourceGroup --output table`
+- **Manage Virtual Networks**:
+  - List: `az network vnet list --output table`
+  - Create: `az network vnet create --resource-group MyResourceGroup --name MyVNet --address-prefix 10.0.0.0/16 --subnet-name MySubnet --subnet-prefix 10.0.1.0/24`
+  - Show: `az network vnet show --resource-group MyResourceGroup --name MyVNet --output table`
+
+These commands help you perform essential tasks such as logging in, managing subscriptions, and creating and managing Azure resources.
+
+
+### Using Azure CLI on Ubuntu for Managing Azure Resources
+
+#### Installing Azure CLI on Ubuntu
+
+1. **Update Package Index**:
+   Open Terminal and run:
+   ```bash
+   sudo apt-get update
+   ```
+
+2. **Install Dependencies**:
+   Install required packages:
+   ```bash
+   sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+   ```
+
+3. **Add Microsoft Signing Key and Repository**:
+   Run the following commands to add the Microsoft signing key and repository:
+   ```bash
+   curl -sL https://packages.microsoft.com/keys/microsoft.asc | 
+       gpg --dearmor | 
+       sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+
+   AZ_REPO=$(lsb_release -cs)
+   echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | 
+       sudo tee /etc/apt/sources.list.d/azure-cli.list
+   ```
+
+4. **Install Azure CLI**:
+   Update the package index again and install Azure CLI:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install azure-cli
+   ```
+
+5. **Verify Installation**:
+   After installation, verify Azure CLI by running:
+   ```bash
+   az --version
+   ```
+
+#### Logging in with Azure CLI
+
+1. **Login**:
+   ```bash
+   az login
+   ```
+   - Follow the instructions in the terminal to open a web browser and authenticate with your Azure credentials.
+
+#### Checking Subscription List and Current Subscription
+
+1. **List Subscriptions**:
+   ```bash
+   az account list --output table
+   ```
+
+2. **Set Current Subscription**:
+   ```bash
+   az account set --subscription "SUBSCRIPTION_NAME_OR_ID"
+   ```
+
+3. **Check Current Subscription**:
+   ```bash
+   az account show --output table
+   ```
+
+#### Checking Resource Groups and Virtual Networks
+
+1. **List Resource Groups**:
+   ```bash
+   az group list --output table
+   ```
+
+2. **List Virtual Networks**:
+   ```bash
+   az network vnet list --output table
+   ```
+
+#### Creating a Resource Group with Azure CLI
+
+1. **Create a Resource Group**:
+   ```bash
+   az group create --name MyResourceGroup --location eastus
+   ```
+
+#### Creating a Virtual Network with Azure CLI
+
+1. **Create a Virtual Network**:
+   ```bash
+   az network vnet create --resource-group MyResourceGroup --name MyVNet --address-prefix 10.0.0.0/16 --subnet-name MySubnet --subnet-prefix 10.0.1.0/24
+   ```
+
+#### Checking the Created Resource Group and Virtual Network
+
+1. **Check the Resource Group**:
+   ```bash
+   az group show --name MyResourceGroup --output table
+   ```
+
+2. **Check the Virtual Network**:
+   ```bash
+   az network vnet show --resource-group MyResourceGroup --name MyVNet --output table
+   ```
+
+### Summary
+
+Using Azure CLI on Ubuntu involves installing the CLI, logging in, managing subscriptions, and creating/managing Azure resources such as resource groups and virtual networks. The steps outlined above provide a comprehensive guide to get started with Azure CLI on Ubuntu for Azure resource management.
+
+
+### Using Azure CLI on macOS for Managing Azure Resources
+
+#### Installing Azure CLI on macOS
+
+1. **Install Homebrew**:
+   If you haven't installed Homebrew yet, open Terminal and run:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+2. **Install Azure CLI**:
+   Once Homebrew is installed, you can install Azure CLI by running:
+   ```bash
+   brew update && brew install azure-cli
+   ```
+
+3. **Verify Installation**:
+   After installation, verify Azure CLI by running:
+   ```bash
+   az --version
+   ```
+
+#### Logging in with Azure CLI
+
+1. **Login**:
+   ```bash
+   az login
+   ```
+   - Follow the instructions in the terminal to open a web browser and authenticate with your Azure credentials.
+
+#### Checking Subscription List and Current Subscription
+
+1. **List Subscriptions**:
+   ```bash
+   az account list --output table
+   ```
+
+2. **Set Current Subscription**:
+   ```bash
+   az account set --subscription "SUBSCRIPTION_NAME_OR_ID"
+   ```
+
+3. **Check Current Subscription**:
+   ```bash
+   az account show --output table
+   ```
+
+#### Checking Resource Groups and Virtual Networks
+
+1. **List Resource Groups**:
+   ```bash
+   az group list --output table
+   ```
+
+2. **List Virtual Networks**:
+   ```bash
+   az network vnet list --output table
+   ```
+
+#### Creating a Resource Group with Azure CLI
+
+1. **Create a Resource Group**:
+   ```bash
+   az group create --name MyResourceGroup --location eastus
+   ```
+
+#### Creating a Virtual Network with Azure CLI
+
+1. **Create a Virtual Network**:
+   ```bash
+   az network vnet create --resource-group MyResourceGroup --name MyVNet --address-prefix 10.0.0.0/16 --subnet-name MySubnet --subnet-prefix 10.0.1.0/24
+   ```
+
+#### Checking the Created Resource Group and Virtual Network
+
+1. **Check the Resource Group**:
+   ```bash
+   az group show --name MyResourceGroup --output table
+   ```
+
+2. **Check the Virtual Network**:
+   ```bash
+   az network vnet show --resource-group MyResourceGroup --name MyVNet --output table
+   ```
+
+### Summary
+
+Using Azure CLI on macOS involves installing the CLI via Homebrew, logging in, managing subscriptions, and creating/managing Azure resources such as resource groups and virtual networks. The steps provided above offer a straightforward guide to get started with Azure CLI on macOS for Azure resource management.
+
+
+Creating an Azure Virtual Machine (VM) for a Hyper-V lab involves several configuration options in the Azure portal. Here's a detailed breakdown of each component and configuration option you mentioned:
+
+### Azure Virtual Machine Basics
+
+#### Subscription and Resource Group
+
+- **Subscription**: The Azure subscription under which the VM will be billed and managed.
+- **Resource Group**: A logical container for grouping Azure resources like VMs, networks, and storage accounts.
+
+#### Virtual Machine Name and Regions
+
+- **Virtual Machine Name**: A unique name for identifying your VM within Azure.
+- **Region**: The geographic location where the VM's resources will be physically located.
+
+#### Availability Options
+
+- **Availability Options**: Configurations for high availability and resilience.
+- **Availability Zone**: Physically separate locations within an Azure region to protect against data center failures.
+
+#### Security Type and Image Options
+
+- **Security Type**: Determines how authentication is handled (e.g., password or SSH key).
+- **Image Options**: Choose from a variety of base images including different versions of Windows Server for Hyper-V.
+
+#### Virtual Machine Architecture
+
+- **VM Architecture**: Specifies the configuration of the virtual hardware, such as CPU, memory, and disk configuration.
+- **VM Size**: Defines the size of the VM, which determines the amount of CPU cores, memory, and storage capacity.
+
+#### Disk and Encryption Options
+
+- **Disk Encryption**: Enables encryption of the VM's disks to enhance security.
+- **Disk Size**: Specifies the size of the VM's disks, including the OS disk and any data disks attached.
+
+#### Virtual Network, Public IP, and Network Security
+
+- **Virtual Network (VNet)**: Defines the network configuration for the VM, including IP address ranges and subnets.
+- **Public IP**: Optionally assigns a public IP address to the VM for accessing it over the internet.
+- **Network Security Group (NSG)**: Contains security rules that allow or deny inbound/outbound network traffic to the VM.
+
+#### Accelerated Networking and Load Balancing
+
+- **Accelerated Networking**: Improves network performance by offloading certain network processing to dedicated hardware.
+- **Load Balancing**: Distributes incoming network traffic across multiple VM instances to ensure high availability and scalability.
+
+#### VM Identity, Authentication, and Management
+
+- **VM Identity**: Enables managed identities for Azure resources to authenticate with Azure AD.
+- **Authentication Type**: Specifies how users authenticate to the VM (e.g., password-based or SSH key-based).
+- **Auto Shutdown**: Configures automatic shutdown schedules to reduce costs.
+
+#### Backup, Monitoring, and Diagnostics
+
+- **Backup**: Enables Azure Backup to protect VM data.
+- **Guest OS Updates**: Automates the installation of operating system updates on the VM.
+- **Monitoring**: Enables recommended alert rules and boot diagnostics for troubleshooting.
+
+#### Health Monitoring and User Data
+
+- **Health Monitoring**: Monitors the health and performance of the VM and its applications.
+- **User Data**: Provides initialization scripts or configurations to be run on the VM during provisioning.
+
+#### Remote Disk Storage and NVMe
+
+- **Remote Disk Storage (NVMe)**: Utilizes high-performance NVMe storage for VM disks to improve disk I/O performance.
+
+#### Host Groups and Tags
+
+- **Host Groups**: Group VMs together based on specific criteria (e.g., proximity for better network performance).
+- **Tags**: Key-value pairs used for organizing and managing resources, and for cost allocation.
+
+### Summary
+
+When creating an Azure Virtual Machine through the Azure portal, each of these configuration options allows you to tailor the VM to your specific needs, whether it's for a Hyper-V lab, production workload, or development environment. Understanding these options helps you deploy VMs that are secure, performant, and cost-effective within the Azure cloud infrastructure.
+
+
+### Managing Azure Virtual Machines with Azure CLI
+
+#### Checking Azure Virtual Machine List and Configuration
+
+1. **List Virtual Machines**:
+   ```bash
+   az vm list --output table
+   ```
+   - Lists all VMs in the current subscription.
+
+2. **Show VM Configuration**:
+   ```bash
+   az vm show --resource-group MyResourceGroup --name MyVM --query "{Name:name, ProvisioningState:provisioningState, OS:storageProfile.osDisk.osType, IP:networkProfile.networkInterfaces[0].ipConfigurations[0].privateIpAddress}" --output table
+   ```
+   - Replace `MyResourceGroup` with your VM's resource group name.
+   - Replace `MyVM` with your VM's name.
+   - Displays detailed information about the specified VM, including its name, provisioning state, operating system type, and private IP address.
+
+#### Creating a Virtual Machine with Azure CLI
+
+1. **Create Resource Group (if not already created)**:
+   ```bash
+   az group create --name MyResourceGroup --location eastus
+   ```
+   - Replace `MyResourceGroup` with your desired resource group name.
+   - Replace `eastus` with your desired region.
+
+2. **Create Virtual Machine**:
+   ```bash
+   az vm create \
+       --resource-group MyResourceGroup \
+       --name MyVM \
+       --image UbuntuLTS \
+       --admin-username azureuser \
+       --admin-password MyPassword123! \
+       --size Standard_DS1_v2 \
+       --location eastus \
+       --output table
+   ```
+   - `--image`: Specifies the OS image (e.g., `UbuntuLTS`, `Win2019Datacenter`).
+   - `--admin-username` and `--admin-password`: Credentials to access the VM.
+   - `--size`: Specifies the VM size (e.g., `Standard_DS1_v2`).
+   - `--location`: Specifies the region where the VM will be created.
+
+#### Summary
+
+Using Azure CLI, you can efficiently manage Azure Virtual Machines by listing them, retrieving detailed configurations, and creating new VMs with specific configurations tailored to your needs. The commands provided offer essential capabilities to get started with VM management using Azure CLI. Adjust parameters such as VM size, image, username, password, and resource group to fit your specific requirements.
+
+
