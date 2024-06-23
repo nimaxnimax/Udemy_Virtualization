@@ -243,3 +243,82 @@ In summary, nested virtualization enhances the capability to run and test virtua
 Installing Hyper-V on Azure Windows Server enables powerful and flexible virtualized environments, leveraging Azure's scalability and global infrastructure. Key Azure components such as subscriptions, resource groups, and VNets are essential for organizing, managing, and securing the resources involved in a Hyper-V deployment. This setup is beneficial for various use cases, including development, testing, training, and creating hybrid cloud scenarios.
 
 
+### Azure Free Trial for Hyper-V Installation and Testing on Windows Server
+
+#### What is Azure Free Trial?
+
+- **Azure Free Trial**:
+  - **Offer**: Provides new users with a limited amount of free credits to explore and use various Azure services.
+  - **Duration**: Typically lasts for 30 days.
+  - **Credits**: Includes $200 in free credits.
+  - **Free Services**: Access to over 40 always-free services, including popular offerings like virtual machines, databases, and storage.
+
+#### How to Register for an Azure Free Trial Account
+
+1. **Visit the Azure Free Trial Page**:
+   - Go to the [Azure Free Trial page](https://azure.microsoft.com/en-us/free/).
+
+2. **Sign Up**:
+   - Click on the "Start free" or "Start now" button.
+
+3. **Microsoft Account**:
+   - If you have a Microsoft account (e.g., Outlook, Hotmail), sign in. If not, create a new Microsoft account.
+
+4. **Identity Verification**:
+   - Provide personal information for identity verification.
+   - Verify your phone number through a code sent via SMS.
+
+5. **Payment Information**:
+   - Enter valid credit card information. This is used for identity verification and to ensure seamless transition if you decide to upgrade, but you won’t be charged unless you exceed the free tier limits.
+   - Azure offers a spending limit which you can enable to avoid charges beyond the free credits.
+
+6. **Agreement**:
+   - Accept the terms and conditions.
+
+7. **Complete Registration**:
+   - Once all information is verified and accepted, your Azure free trial account will be created.
+
+### Setting Up Hyper-V on Windows Server in Azure
+
+1. **Create a Virtual Machine**:
+   - **Navigate to the Azure Portal**: [Azure Portal](https://portal.azure.com/)
+   - **Create a VM**: Select "Create a resource" and then "Virtual machine".
+   - **Configure VM**:
+     - **Resource Group**: Create a new resource group or select an existing one.
+     - **VM Name**: Provide a name for your VM.
+     - **Region**: Choose a region close to you.
+     - **Image**: Select a Windows Server image (e.g., Windows Server 2019 Datacenter).
+     - **Size**: Choose an appropriate size for your VM. Smaller sizes are more cost-effective but ensure it meets the requirements for Hyper-V nested virtualization.
+   - **Administrator Account**: Set up a username and password for the VM.
+
+2. **Networking Configuration**:
+   - **VNet**: Use an existing VNet or create a new one for the VM.
+   - **Public IP**: Optionally, assign a public IP if you need to access the VM over the internet.
+   - **NSG (Network Security Group)**: Configure to allow RDP (port 3389) for remote access.
+
+3. **Deploy VM**:
+   - **Review and Create**: Review your configuration and create the VM.
+
+4. **Install Hyper-V**:
+   - **Connect to VM**: Use Remote Desktop to connect to your Azure VM.
+   - **Add Hyper-V Role**:
+     - Open Server Manager on the VM.
+     - Navigate to "Manage" -> "Add Roles and Features".
+     - Proceed through the wizard, selecting "Hyper-V" when prompted.
+     - Complete the installation and reboot the VM as necessary.
+
+5. **Enable Nested Virtualization**:
+   - **Run PowerShell**: Open PowerShell on your Azure VM.
+   - **Enable Nested Virtualization**:
+     ```powershell
+     Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
+     ```
+
+6. **Test and Use Hyper-V**:
+   - **Create and Manage VMs**: Use Hyper-V Manager on the Azure VM to create and manage nested virtual machines for your testing needs.
+
+### Summary
+
+The Azure Free Trial offers an excellent opportunity to explore Azure services and test Hyper-V on a Windows Server VM. By following the steps to register for an account and setting up a VM, you can leverage Azure's cloud infrastructure for various testing and development scenarios involving Hyper-V.
+
+
