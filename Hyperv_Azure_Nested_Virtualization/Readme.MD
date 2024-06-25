@@ -2248,3 +2248,64 @@ Import-VM -Path "C:\Path\To\Exported\VM"
 These steps and commands allow you to effectively remove and import VMs in Hyper-V, enabling smooth transitions between different Hyper-V environments or recovery scenarios.
 
 
+To share the Hyper-V host's IP address and provide internet access to VMs, you typically configure a NAT (Network Address Translation) network using an internal virtual switch. This method allows your VMs to share the host’s internet connection without needing an external switch. Here's how you can set this up:
+
+### Steps to Configure NAT Network in Hyper-V
+
+1. **Create an Internal Virtual Switch**:
+   - Open Hyper-V Manager.
+   - Go to "Virtual Switch Manager."
+   - Select "Internal" and click "Create Virtual Switch."
+   - Name the switch (e.g., `InternalSwitch`) and click "OK."
+
+2. **Configure the Internal Virtual Switch on the Host**:
+   - Open `Network and Sharing Center` on the Hyper-V host.
+   - Find the newly created virtual switch (likely named `vEthernet (InternalSwitch)`).
+   - Assign an IP address to this virtual adapter (e.g., 192.168.0.1).
+
+3. **Enable Internet Connection Sharing (ICS)**:
+   - Go to `Network and Sharing Center` again.
+   - Select your internet connection (e.g., `Ethernet` or `Wi-Fi`).
+   - Right-click and select `Properties`.
+   - Go to the `Sharing` tab.
+   - Check `Allow other network users to connect through this computer’s Internet connection`.
+   - Select the internal virtual switch (e.g., `vEthernet (InternalSwitch)`).
+   - Click `OK`.
+
+4. **Set Up the NAT Network**:
+   - Open PowerShell as an Administrator and run the following commands:
+     ```powershell
+     New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceAlias "vEthernet (InternalSwitch)"
+     New-NetNAT -Name "InternalNAT" -InternalIPInterfaceAddressPrefix "192.168.0.0/24"
+     ```
+
+5. **Configure the VMs**:
+   - Open Hyper-V Manager.
+   - Select a VM, go to "Settings," and add a Network Adapter.
+   - Connect the Network Adapter to the `InternalSwitch`.
+   - Inside the VM, configure the network adapter to use an IP address in the same subnet (e.g., 192.168.0.2), with the default gateway set to the internal switch IP (192.168.0.1).
+
+### Example Configuration for VM
+
+1. **IP Address**: 192.168.0.2
+2. **Subnet Mask**: 255.255.255.0
+3. **Default Gateway**: 192.168.0.1
+4. **DNS Server**: Can be set to the same as the host's DNS server or a public DNS server (e.g., 8.8.8.8).
+
+### Summary of Commands
+
+1. **Create Internal Switch**:
+   - In Hyper-V Manager: Virtual Switch Manager > Internal > Create Virtual Switch.
+2. **Assign IP Address to Host Adapter**:
+   - Network and Sharing Center > `vEthernet (InternalSwitch)` > Properties > IP Settings > 192.168.0.1.
+3. **Enable Internet Connection Sharing (ICS)**:
+   - Network and Sharing Center > Internet Connection > Properties > Sharing > Allow other network users > Select `vEthernet (InternalSwitch)`.
+4. **Configure NAT in PowerShell**:
+   ```powershell
+   New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceAlias "vEthernet (InternalSwitch)"
+   New-NetNAT -Name "InternalNAT" -InternalIPInterfaceAddressPrefix "192.168.0.0/24"
+   ```
+
+This setup allows VMs connected to the internal switch to access the internet through the host's internet connection.
+
+
