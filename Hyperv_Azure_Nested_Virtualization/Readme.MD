@@ -1394,3 +1394,169 @@ This action moves the VM to a new host and can help resolve issues related to th
 By either redeploying the existing VM or creating a new VM with the same configuration, you can effectively troubleshoot or reinstall Windows Server 2022 on your Azure VM. Ensure that you have backups of important data before proceeding with any of these operations.
 
 
+### Managing Azure Virtual Machines with Azure CLI
+
+Azure CLI provides a powerful set of commands to manage Azure resources, including virtual machines (VMs). Below are some key commands to help you manage your Azure VMs, check the current VM list, and get more information about a specific VM (e.g., AZHVVM1).
+
+### Prerequisites
+
+1. **Azure CLI**: Ensure you have Azure CLI installed. You can install it from [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+2. **Sign In**: Log in to your Azure account using the following command:
+   ```bash
+   az login
+   ```
+   This will open a browser window for you to enter your Azure credentials.
+
+### Checking the Current VM List
+
+To list all VMs in a specific resource group or across your subscription:
+
+1. **List All VMs in a Subscription**:
+   ```bash
+   az vm list --output table
+   ```
+   This command lists all VMs in your subscription in a tabular format.
+
+2. **List VMs in a Specific Resource Group**:
+   ```bash
+   az vm list --resource-group <ResourceGroupName> --output table
+   ```
+   Replace `<ResourceGroupName>` with the name of your resource group.
+
+### Getting More Information about a Specific VM (AZHVVM1)
+
+To get detailed information about a specific VM:
+
+1. **Show VM Details**:
+   ```bash
+   az vm show --resource-group <ResourceGroupName> --name AZHVVM1 --output json
+   ```
+   This command displays detailed information about the VM `AZHVVM1` in JSON format. Replace `<ResourceGroupName>` with the appropriate resource group name.
+
+2. **Get Instance View**:
+   This provides the status of the VM, including power state and extensions.
+   ```bash
+   az vm get-instance-view --resource-group <ResourceGroupName> --name AZHVVM1 --output json
+   ```
+
+3. **Get VM IP Addresses**:
+   This command retrieves the public and private IP addresses of the VM.
+   ```bash
+   az vm list-ip-addresses --resource-group <ResourceGroupName> --name AZHVVM1 --output table
+   ```
+
+### Example Workflow
+
+Let's go through an example workflow for managing VMs.
+
+#### Step 1: List All VMs in a Subscription
+
+```bash
+az vm list --output table
+```
+
+#### Step 2: List VMs in a Specific Resource Group
+
+```bash
+az vm list --resource-group AZHVRG3 --output table
+```
+
+#### Step 3: Get Detailed Information about a Specific VM (AZHVVM1)
+
+```bash
+az vm show --resource-group AZHVRG3 --name AZHVVM1 --output json
+```
+
+#### Step 4: Get Instance View of the VM
+
+```bash
+az vm get-instance-view --resource-group AZHVRG3 --name AZHVVM1 --output json
+```
+
+#### Step 5: Get IP Addresses of the VM
+
+```bash
+az vm list-ip-addresses --resource-group AZHVRG3 --name AZHVVM1 --output table
+```
+
+### Conclusion
+
+By using Azure CLI, you can efficiently manage Azure VMs, retrieve their status, and obtain detailed information. These commands help you automate and streamline your workflow, making it easier to manage resources within your Azure environment.
+
+
+Using Azure CLI, you can start, stop, and shut down your Azure Virtual Machines (VMs) with simple commands. Below are the steps and commands to manage your VM (e.g., AZHVVM1) in these ways.
+
+### Start a Virtual Machine
+
+To start a VM, use the `az vm start` command:
+
+```bash
+az vm start --resource-group <ResourceGroupName> --name AZHVVM1
+```
+
+Replace `<ResourceGroupName>` with the name of your resource group where the VM resides.
+
+### Stop (Deallocate) a Virtual Machine
+
+To stop and deallocate a VM, use the `az vm deallocate` command. This action releases the hardware resources but retains the VM's configuration and data.
+
+```bash
+az vm deallocate --resource-group <ResourceGroupName> --name AZHVVM1
+```
+
+### Shutdown a Virtual Machine
+
+Stopping (deallocating) and shutting down a VM are generally the same in the context of Azure CLI. However, if you want to perform a regular OS shutdown without deallocating the resources, you can use the `az vm stop` command:
+
+```bash
+az vm stop --resource-group <ResourceGroupName> --name AZHVVM1
+```
+
+This command shuts down the operating system of the VM, but unlike `deallocate`, it doesn't release the underlying compute resources. It is equivalent to turning off the machine's power.
+
+### Example Workflow
+
+#### Step 1: Start the Virtual Machine
+
+```bash
+az vm start --resource-group AZHVRG3 --name AZHVVM1
+```
+
+#### Step 2: Stop and Deallocate the Virtual Machine
+
+```bash
+az vm deallocate --resource-group AZHVRG3 --name AZHVVM1
+```
+
+#### Step 3: Shutdown the Virtual Machine (OS-level shutdown)
+
+```bash
+az vm stop --resource-group AZHVRG3 --name AZHVVM1
+```
+
+### Summary of Commands
+
+- **Start a VM**:
+  ```bash
+  az vm start --resource-group <ResourceGroupName> --name AZHVVM1
+  ```
+
+- **Stop and Deallocate a VM**:
+  ```bash
+  az vm deallocate --resource-group <ResourceGroupName> --name AZHVVM1
+  ```
+
+- **Shutdown a VM (OS-level shutdown)**:
+  ```bash
+  az vm stop --resource-group <ResourceGroupName> --name AZHVVM1
+  ```
+
+### Notes
+
+- **Start**: Boots up the VM and makes it available for use.
+- **Stop (Deallocate)**: Shuts down the VM and releases the hardware resources, reducing costs.
+- **Stop (Shutdown)**: Shuts down the VM's operating system but does not release the hardware resources, which continues to incur compute costs.
+
+Using these commands, you can efficiently manage the state of your Azure VMs through the Azure CLI.
+
+
