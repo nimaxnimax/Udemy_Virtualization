@@ -1560,3 +1560,138 @@ az vm stop --resource-group AZHVRG3 --name AZHVVM1
 Using these commands, you can efficiently manage the state of your Azure VMs through the Azure CLI.
 
 
+### Hyper-V Virtual Switch Manager
+
+The Hyper-V Virtual Switch Manager is a feature in Microsoft Hyper-V that allows you to create and manage virtual switches. These virtual switches enable virtual machines (VMs) to communicate with each other and with external networks. 
+
+### Types of Virtual Switches
+
+1. **External Virtual Switch**:
+   - **Description**: Connects VMs to a physical network. VMs connected to an external switch can communicate with each other and with the external network (including the internet).
+   - **Use Cases**: When VMs need to access external network resources or be accessible from outside the host.
+   - **Example**: A VM that needs internet access or to be accessed by other devices on the physical network.
+
+2. **Internal Virtual Switch**:
+   - **Description**: Allows communication between VMs on the same host and between VMs and the host itself, but not with the external network.
+   - **Use Cases**: Useful for test environments or when VMs need to communicate only with each other and the host without needing external network access.
+   - **Example**: A development environment where multiple VMs need to interact with the host machine but not the internet.
+
+3. **Private Virtual Switch**:
+   - **Description**: Allows communication only between VMs on the same host. The host cannot communicate with the VMs, and the VMs cannot communicate with external networks.
+   - **Use Cases**: Highly secure environments where VMs need to be isolated from the host and external networks.
+   - **Example**: Testing environments where VMs should be completely isolated for security reasons.
+
+### Creating an External Virtual Switch with Hyper-V
+
+#### Using Hyper-V Manager GUI
+
+1. **Open Hyper-V Manager**:
+   - Click on "Start" and search for "Hyper-V Manager". Open it.
+
+2. **Open Virtual Switch Manager**:
+   - In the left-hand pane, select the Hyper-V host.
+   - In the right-hand pane, under "Actions", click on "Virtual Switch Manager".
+
+3. **Create an External Virtual Switch**:
+   - In the Virtual Switch Manager window, select "New virtual network switch" and choose "External".
+   - Click on "Create Virtual Switch".
+
+4. **Configure the Virtual Switch**:
+   - **Name**: Give your virtual switch a name.
+   - **Connection Type**: Ensure "External network" is selected.
+   - **Adapter**: Choose the physical network adapter you want to bind to this virtual switch.
+   - **Allow management operating system to share this network adapter**: Check this box if you want the host OS to use this network adapter as well.
+   - Click "OK" to create the switch.
+
+#### Using PowerShell
+
+1. **Open PowerShell**:
+   - Right-click on "Start" and select "Windows PowerShell (Admin)".
+
+2. **Create an External Virtual Switch**:
+   ```powershell
+   New-VMSwitch -Name "ExternalSwitch" -NetAdapterName "Ethernet" -AllowManagementOS $true
+   ```
+   - **Name**: The name of the new virtual switch, e.g., "ExternalSwitch".
+   - **NetAdapterName**: The name of the physical network adapter you want to use, e.g., "Ethernet".
+   - **AllowManagementOS**: Specifies whether the management operating system should share the network adapter.
+
+### Use Cases for Each Switch Type
+
+- **External Virtual Switch**:
+  - VMs needing internet access or communication with other physical network devices.
+  - Hosting services that need to be accessible from other devices on the network.
+
+- **Internal Virtual Switch**:
+  - Development environments where VMs need to communicate with each other and the host but not with external networks.
+  - Testing configurations that require host-VM interaction.
+
+- **Private Virtual Switch**:
+  - Highly secure environments where isolation of VMs is necessary.
+  - Testing scenarios where VM interaction is needed without any external interference or access.
+
+### Summary
+
+- **Hyper-V Virtual Switch Manager**: Manages virtual switches in Hyper-V.
+- **External Virtual Switch**: Connects VMs to the external network.
+- **Internal Virtual Switch**: Connects VMs to each other and the host only.
+- **Private Virtual Switch**: Connects VMs to each other only.
+- **Creating an External Virtual Switch**: Can be done via Hyper-V Manager GUI or PowerShell.
+
+Using these methods and understanding the different types of virtual switches allows for effective network management and configuration in Hyper-V environments.
+
+
+To check the list of virtual switches configured in Hyper-V using PowerShell, you can use the following command:
+
+```powershell
+Get-VMSwitch
+```
+
+This command retrieves a list of all virtual switches configured on the Hyper-V host along with their details. Here’s how you can interpret and utilize the output:
+
+### PowerShell Command Explanation:
+
+1. **Open PowerShell**: Launch PowerShell with administrative privileges.
+
+2. **Run the Command**:
+   ```powershell
+   Get-VMSwitch
+   ```
+
+### Example Output:
+
+The output typically includes details such as:
+
+- **Name**: Name of the virtual switch.
+- **SwitchType**: Type of the virtual switch (External, Internal, or Private).
+- **NetAdapterInterfaceDescription**: Description of the physical network adapter associated with the switch (for External switches).
+
+Here's a simplified example of what the output might look like:
+
+```
+Name               SwitchType    NetAdapterInterfaceDescription
+----               ----------    ------------------------------
+ExternalSwitch     External      Intel(R) Ethernet Connection
+InternalSwitch     Internal
+PrivateSwitch      Private
+```
+
+### Interpreting the Output:
+
+- **Name**: Identifies the name of each virtual switch.
+- **SwitchType**: Specifies whether the switch is External (connected to a physical adapter), Internal (internal communication only), or Private (isolated communication).
+- **NetAdapterInterfaceDescription**: Describes the physical network adapter associated with External switches.
+
+### Additional Options:
+
+- To view more detailed information about a specific virtual switch, including its properties and configuration, you can use:
+  ```powershell
+  Get-VMSwitch -Name "SwitchName"
+  ```
+  Replace `"SwitchName"` with the name of the virtual switch you want to inspect.
+
+### Summary:
+
+Using PowerShell's `Get-VMSwitch` command provides a straightforward way to list and examine the virtual switches configured in Hyper-V. This command is essential for managing and troubleshooting network configurations within your virtual environment.
+
+
