@@ -1075,3 +1075,322 @@ When creating an Azure Virtual Machine through the Azure portal, each of these c
 Using Azure CLI, you can efficiently manage Azure Virtual Machines by listing them, retrieving detailed configurations, and creating new VMs with specific configurations tailored to your needs. The commands provided offer essential capabilities to get started with VM management using Azure CLI. Adjust parameters such as VM size, image, username, password, and resource group to fit your specific requirements.
 
 
+### Installing Hyper-V on a Windows Server 2022 VM on Azure
+
+#### Steps to Install Hyper-V using Server Manager and PowerShell
+
+**Pre-requisites:**
+1. Ensure your VM is running Windows Server 2022.
+2. Ensure you have administrative privileges on the VM.
+
+#### Installing Hyper-V Using Server Manager
+
+1. **Connect to your Azure VM**:
+   - Connect to your Windows Server 2022 VM using Remote Desktop (RDP).
+
+2. **Open Server Manager**:
+   - Open the Start menu and select "Server Manager".
+
+3. **Add Roles and Features**:
+   - In Server Manager, click on "Add roles and features".
+
+4. **Before You Begin**:
+   - Click "Next" on the "Before You Begin" screen.
+
+5. **Installation Type**:
+   - Select "Role-based or feature-based installation" and click "Next".
+
+6. **Select Destination Server**:
+   - Ensure your server is selected and click "Next".
+
+7. **Select Server Roles**:
+   - Scroll down and select "Hyper-V".
+   - A dialog box will appear to add features required for Hyper-V. Click "Add Features".
+
+8. **Hyper-V Features**:
+   - Click "Next" until you reach the "Create Virtual Switches" page.
+   - Here you can configure a virtual switch if needed, or do this later. Click "Next".
+
+9. **Virtual Machine Migration**:
+   - Configure virtual machine migration settings if necessary. Click "Next".
+
+10. **Default Stores**:
+   - Specify default stores for virtual hard disks and virtual machine configuration files. Click "Next".
+
+11. **Confirmation**:
+   - Click "Install" to begin the installation.
+
+12. **Reboot**:
+   - After the installation completes, you may be prompted to restart the server. Click "Close" and restart the server if required.
+
+#### Installing Hyper-V Using PowerShell
+
+1. **Connect to your Azure VM**:
+   - Connect to your Windows Server 2022 VM using Remote Desktop (RDP).
+
+2. **Open PowerShell**:
+   - Open PowerShell with administrative privileges.
+
+3. **Install Hyper-V**:
+   - Run the following command to install Hyper-V:
+     ```powershell
+     Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+     ```
+
+4. **Reboot**:
+   - The server will automatically restart if the `-Restart` parameter is included. If not, you will need to manually restart the server.
+
+#### Considerations
+
+- **Nested Virtualization**:
+  - Ensure that nested virtualization is enabled if you intend to run Hyper-V within an Azure VM. This is particularly important for Hyper-V to function properly on a virtual machine within Azure.
+  - Check if your Azure VM size supports nested virtualization. Supported sizes include the Dv3 and Ev3 series.
+
+- **VM Size**:
+  - Choose an appropriate VM size that supports Hyper-V and nested virtualization. For example, `Standard_D4s_v3` or larger.
+
+- **Networking**:
+  - Configure virtual switches appropriately to ensure network connectivity for your virtual machines.
+
+- **Resources**:
+  - Ensure your VM has sufficient CPU, memory, and storage resources to run Hyper-V and the virtual machines you plan to host.
+
+- **Licensing**:
+  - Verify licensing requirements for running multiple instances of Windows Server or other operating systems in a virtualized environment.
+
+### Summary
+
+By following these steps, you can install and configure Hyper-V on your Windows Server 2022 VM in Azure using either Server Manager or PowerShell. Make sure to consider factors such as nested virtualization support, VM size, and network configuration to ensure a smooth and efficient setup.
+
+
+If you encounter an issue where Hyper-V cannot be installed on an Azure VM running Windows Server 2022 because virtualization support is not enabled in the BIOS, it usually indicates that the VM size you are using does not support nested virtualization. Here's how you can resolve this:
+
+### Steps to Enable Nested Virtualization on Azure VM
+
+#### 1. Verify VM Size
+Ensure that the VM size you are using supports nested virtualization. Some of the VM sizes that support nested virtualization include:
+- Dv3-series
+- Ev3-series
+- F2s_v2, F4s_v2, F8s_v2, F16s_v2
+- M-series
+- Lsv2-series
+
+#### 2. Resize the VM (if needed)
+If your current VM size does not support nested virtualization, you need to resize it to a supported size.
+
+1. **Resize VM using Azure Portal**:
+   - Go to the Azure portal.
+   - Navigate to your virtual machine.
+   - Click on "Size" under the "Settings" section.
+   - Select a size that supports nested virtualization (e.g., Standard_D4s_v3).
+   - Click "Resize" to apply the changes.
+
+2. **Resize VM using Azure CLI**:
+   - Open Azure CLI and run the following command:
+     ```bash
+     az vm resize --resource-group MyResourceGroup --name MyVM --size Standard_D4s_v3
+     ```
+   - Replace `MyResourceGroup` with the name of your resource group.
+   - Replace `MyVM` with the name of your virtual machine.
+   - Replace `Standard_D4s_v3` with a size that supports nested virtualization.
+
+#### 3. Enable Nested Virtualization
+After ensuring that your VM size supports nested virtualization, you need to enable it.
+
+1. **Enable Nested Virtualization using PowerShell**:
+   - Connect to your Azure VM using Remote Desktop.
+   - Open PowerShell with administrative privileges.
+   - Run the following command to enable nested virtualization:
+     ```powershell
+     Set-VMProcessor -VMName MyVM -ExposeVirtualizationExtensions $true
+     ```
+   - Replace `MyVM` with the name of your virtual machine.
+
+2. **Enable Nested Virtualization using Azure CLI**:
+   - Open Azure CLI and run the following command:
+     ```bash
+     az vm stop --resource-group MyResourceGroup --name MyVM
+     az vm update --resource-group MyResourceGroup --name MyVM --set nestedVirtualization=true
+     az vm start --resource-group MyResourceGroup --name MyVM
+     ```
+   - Replace `MyResourceGroup` with the name of your resource group.
+   - Replace `MyVM` with the name of your virtual machine.
+
+#### 4. Install Hyper-V
+After enabling nested virtualization, you can proceed with the installation of Hyper-V using either Server Manager or PowerShell as described earlier.
+
+### Summary
+To install Hyper-V on an Azure VM running Windows Server 2022, you need to ensure that nested virtualization is enabled. This involves verifying that the VM size supports nested virtualization, resizing the VM if necessary, and enabling nested virtualization through PowerShell or Azure CLI. Once these steps are completed, you can proceed with installing Hyper-V on your Azure VM.
+
+
+### Troubleshooting a Faulty Azure VM using Nested Virtualization in Azure
+
+Nested virtualization allows you to run a Hyper-V virtual machine inside an Azure virtual machine. This can be particularly useful for troubleshooting a faulty Azure VM by simulating the same environment.
+
+### PowerShell Commands for Nested Virtualization Setup
+
+1. **Check Current Boot Configuration**:
+   Use `bcdedit /enum` to list the current boot configuration settings.
+   ```powershell
+   bcdedit /enum
+   ```
+   This command displays the current boot configuration data, including settings that control how the hypervisor is launched.
+
+2. **Set Hypervisor Launch Type to Auto**:
+   Configure the system to start the hypervisor automatically.
+   ```powershell
+   bcdedit /set hypervisorlaunchtype auto
+   ```
+   This ensures that the hypervisor is launched at boot time, which is necessary for running nested virtual machines.
+
+3. **Restart the VM**:
+   Apply the changes by restarting the VM.
+   ```powershell
+   Restart-Computer -Force
+   ```
+   This command forces a restart of the computer to apply the new boot configuration settings.
+
+### Full Steps to Enable Nested Virtualization and Set Up Hyper-V
+
+#### 1. Stop the VM
+   Ensure the VM is deallocated before making changes.
+   ```bash
+   az vm deallocate --resource-group AZHVRG3 --name AZHVVM1
+   ```
+
+#### 2. Enable Nested Virtualization
+   Enable nested virtualization on your Azure VM.
+   ```bash
+   az vm update --resource-group AZHVRG3 --name AZHVVM1 --set "additionalCapabilities.enableNestedVirtualization=true"
+   ```
+
+#### 3. Start the VM
+   Start the VM again after enabling nested virtualization.
+   ```bash
+   az vm start --resource-group AZHVRG3 --name AZHVVM1
+   ```
+
+#### 4. Connect to the VM
+   Use Remote Desktop to connect to the VM.
+
+#### 5. Open PowerShell and Check Boot Configuration
+   ```powershell
+   bcdedit /enum
+   ```
+
+#### 6. Set Hypervisor Launch Type to Auto
+   ```powershell
+   bcdedit /set hypervisorlaunchtype auto
+   ```
+
+#### 7. Restart the VM
+   ```powershell
+   Restart-Computer -Force
+   ```
+
+#### 8. Install Hyper-V (if not already installed)
+   ```powershell
+   Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+   ```
+
+### Using Nested Virtualization for Troubleshooting
+
+1. **Create a Nested VM**:
+   Once Hyper-V is installed and configured, you can create a new virtual machine inside the Azure VM to simulate the same environment as your faulty VM.
+   
+2. **Migrate Faulty VM's Configuration**:
+   Export the configuration of the faulty VM and import it into the nested VM to replicate the issue.
+   
+3. **Analyze and Fix**:
+   Use the nested VM to diagnose and troubleshoot the issue without affecting the production environment.
+
+### Summary
+
+By setting up nested virtualization and configuring the hypervisor launch type, you can effectively troubleshoot a faulty Azure VM in a controlled environment. These steps ensure that you have a robust setup for simulating and resolving issues using Hyper-V inside an Azure VM.
+
+
+Reinstalling your current Azure VM with Windows Server 2022 using the Azure portal involves creating a new VM with the same configuration or using the Azure portal to redeploy the existing VM. Here's how you can do it:
+
+### Method 1: Redeploy the Existing VM
+
+Redeploying the VM moves it to a new node in Azure's data center. This can resolve underlying host issues without losing your VM configuration.
+
+1. **Navigate to the Azure Portal**:
+   - Go to the [Azure portal](https://portal.azure.com) and sign in with your Azure account.
+
+2. **Locate Your VM**:
+   - Navigate to "Virtual machines" and select the VM you want to redeploy.
+
+3. **Redeploy the VM**:
+   - In the VM's settings, click on "Redeploy + reapply" under the "Support + troubleshooting" section.
+   - Click "Redeploy" to move the VM to a new Azure node.
+
+This process will not reinstall the OS but may resolve host-level issues.
+
+### Method 2: Reinstall the VM OS by Creating a New VM
+
+If you need to completely reinstall the OS, you'll need to create a new VM and configure it similarly to the existing one. Here's how:
+
+1. **Backup Existing Data**:
+   - Before proceeding, ensure you have backups of any important data on the existing VM.
+
+2. **Create a New VM**:
+   - In the Azure portal, go to "Virtual machines" and click on "Create" and then "Azure virtual machine."
+
+3. **Configure the New VM**:
+   - **Basics**:
+     - **Subscription**: Select your subscription.
+     - **Resource group**: Choose an existing resource group or create a new one.
+     - **Virtual machine name**: Give your new VM a name.
+     - **Region**: Select the same region as your existing VM.
+     - **Availability options**: Choose the same availability options as the existing VM.
+     - **Image**: Select "Windows Server 2022."
+     - **Size**: Choose the same size as the existing VM.
+
+   - **Administrator Account**:
+     - **Username**: Enter the administrator username.
+     - **Password**: Enter the administrator password.
+
+   - **Disks**:
+     - Configure the OS disk and any additional data disks.
+
+   - **Networking**:
+     - **Virtual network**: Select the same virtual network as the existing VM.
+     - **Public IP**: Choose whether to use a new or existing public IP address.
+     - **Network security group (NSG)**: Configure the same NSG settings.
+
+   - **Management**:
+     - Enable boot diagnostics, monitoring, and auto-shutdown if required.
+
+   - **Advanced, Tags, and Review + Create**:
+     - Configure advanced settings and tags if needed.
+     - Review your configurations and click "Create."
+
+4. **Install and Configure Applications**:
+   - Once the new VM is created, install any necessary applications and restore data from backups.
+
+5. **Decommission Old VM**:
+   - After verifying the new VM works correctly, you can decommission the old VM.
+
+### Steps to Redeploy the VM via Azure Portal (Step-by-Step)
+
+1. **Sign in to the Azure Portal**:
+   - Open your web browser and navigate to [Azure Portal](https://portal.azure.com).
+   - Sign in with your Azure account credentials.
+
+2. **Navigate to Virtual Machines**:
+   - In the left-hand menu, click on "Virtual machines."
+   - Find and select the VM you want to redeploy.
+
+3. **Redeploy the VM**:
+   - In the VM's blade, scroll down to the "Support + troubleshooting" section.
+   - Click on "Redeploy + reapply."
+   - On the "Redeploy + reapply" page, click the "Redeploy" button.
+
+This action moves the VM to a new host and can help resolve issues related to the host machine without changing any of the VM's data or configurations.
+
+### Summary
+
+By either redeploying the existing VM or creating a new VM with the same configuration, you can effectively troubleshoot or reinstall Windows Server 2022 on your Azure VM. Ensure that you have backups of important data before proceeding with any of these operations.
+
+
