@@ -742,3 +742,104 @@ Updating and upgrading your Linux system ensures you have the latest software, s
 Regularly updating and upgrading your Linux system ensures it remains secure, stable, and equipped with the latest features.
 
 
+### Checking IP Addresses and Routes on Various Linux Distributions
+
+To manage and troubleshoot network configurations on Linux, it's essential to know how to check IP addresses, routes, and use network diagnostic tools like `traceroute` and `mtr`.
+
+#### Commands to Check IP Addresses and Routes
+
+##### Ubuntu 20.04, 22.04 / Debian 10, 11, 12
+- **Check IP Address:**
+  ```sh
+  ip addr show
+  ```
+  - **Explanation:** The `ip addr show` command displays all network interfaces and their assigned IP addresses.
+- **Check Routes:**
+  ```sh
+  ip route show
+  ```
+  - **Explanation:** The `ip route show` command lists all routing table entries.
+
+##### CentOS 7, 8, 9 / AlmaLinux 8
+- **Check IP Address:**
+  ```sh
+  ip addr show
+  ```
+  - **Explanation:** The `ip addr show` command works across different Linux distributions and shows the IP addresses of all interfaces.
+- **Check Routes:**
+  ```sh
+  ip route show
+  ```
+  - **Explanation:** The `ip route show` command displays the routing table.
+
+#### Installing Network Diagnostic Tools
+
+To install and use tools like `traceroute`, `mtr`, and `ip`, follow these steps based on your Linux distribution.
+
+##### Ubuntu 20.04, 22.04 / Debian 10, 11, 12
+- **Install Tools:**
+  ```sh
+  sudo apt update
+  sudo apt install traceroute mtr net-tools
+  ```
+  - **Explanation:** This installs `traceroute`, `mtr`, and `net-tools` package which includes the `ifconfig` command for checking IP addresses.
+
+##### CentOS 7, 8, 9 / AlmaLinux 8
+- **Install Tools:**
+  ```sh
+  sudo yum install traceroute mtr net-tools
+  ```
+  - **Explanation (CentOS 7):** Installs `traceroute`, `mtr`, and `net-tools`.
+  ```sh
+  sudo dnf install traceroute mtr net-tools
+  ```
+  - **Explanation (CentOS 8, 9, AlmaLinux 8):** Uses `dnf` for installing the same tools.
+
+#### Network Diagnostic Tools and Their Commands
+
+- **`traceroute`:**
+  - **Command:**
+    ```sh
+    traceroute <destination>
+    ```
+  - **Explanation:** The `traceroute` command maps the route packets take from your machine to the destination. Useful for identifying where connectivity issues occur.
+  - **Example:**
+    ```sh
+    traceroute google.com
+    ```
+
+- **`mtr` (My Traceroute):**
+  - **Command:**
+    ```sh
+    mtr <destination>
+    ```
+  - **Explanation:** The `mtr` tool combines the functionality of `traceroute` and `ping` to provide a continuous, real-time view of the path packets take and the delay at each hop.
+  - **Example:**
+    ```sh
+    mtr google.com
+    ```
+
+- **`ip` (iproute2):**
+  - **Check IP Address:**
+    ```sh
+    ip addr show
+    ```
+  - **Check Routes:**
+    ```sh
+    ip route show
+    ```
+  - **Explanation:** The `ip` command from the `iproute2` package is a modern replacement for older network utilities like `ifconfig` and `route`.
+
+### Why Use These Tools?
+- **IP Address and Routes:**
+  - To verify network configurations and troubleshoot connectivity issues.
+- **Traceroute:**
+  - To identify the path and delays that packets encounter reaching a destination.
+- **Mtr:**
+  - To combine the functionalities of `ping` and `traceroute` for continuous, real-time monitoring.
+- **Net-Tools:**
+  - To use legacy commands like `ifconfig` and `route` for network management.
+
+By using these commands and tools, you can efficiently manage and troubleshoot your Linux network configurations across different distributions.
+
+
