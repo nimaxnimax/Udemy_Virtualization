@@ -843,3 +843,133 @@ To install and use tools like `traceroute`, `mtr`, and `ip`, follow these steps 
 By using these commands and tools, you can efficiently manage and troubleshoot your Linux network configurations across different distributions.
 
 
+Monitoring system resources such as CPU, memory, disk I/O, and network traffic is crucial for maintaining the health and performance of a Linux server. Here are some essential tools to install and how to use them across various Linux distributions:
+
+### Important Monitoring Tools
+
+1. **htop**: An interactive process viewer for Unix systems.
+2. **nload**: A real-time network traffic monitor.
+3. **iotop**: Displays I/O usage by processes.
+4. **netdata**: A comprehensive real-time performance monitoring tool.
+5. **vmstat**: Reports information about processes, memory, paging, block I/O, traps, and CPU activity.
+6. **dstat**: Versatile resource statistics tool.
+7. **glances**: A cross-platform monitoring tool.
+
+### Installation and Usage Instructions
+
+#### Ubuntu 20.04, 22.04 / Debian 10, 11, 12
+
+- **Install Tools:**
+  ```sh
+  sudo apt update
+  sudo apt install htop nload iotop netdata dstat glances
+  ```
+
+- **Usage:**
+
+  - **htop:**
+    ```sh
+    htop
+    ```
+    - **Explanation:** Provides an interactive process viewer with CPU, memory, and process information.
+
+  - **nload:**
+    ```sh
+    sudo nload
+    ```
+    - **Explanation:** Monitors incoming and outgoing network traffic in real-time.
+
+  - **iotop:**
+    ```sh
+    sudo iotop
+    ```
+    - **Explanation:** Displays disk I/O usage by processes. Requires root privileges.
+
+  - **netdata:**
+    ```sh
+    sudo systemctl start netdata
+    sudo systemctl enable netdata
+    ```
+    - **Explanation:** Starts the Netdata service. Access the web interface at `http://<server-ip>:19999` for comprehensive monitoring.
+
+  - **dstat:**
+    ```sh
+    dstat
+    ```
+    - **Explanation:** Displays various system resource statistics in real-time.
+
+  - **glances:**
+    ```sh
+    glances
+    ```
+    - **Explanation:** Provides an overview of system resource usage.
+
+#### CentOS 7, 8, 9 / AlmaLinux 8
+
+- **Install Tools:**
+  ```sh
+  sudo yum install epel-release -y
+  sudo yum install htop nload iotop dstat glances
+  ```
+  - **For CentOS 8/9 and AlmaLinux 8:**
+  ```sh
+  sudo dnf install epel-release -y
+  sudo dnf install htop nload iotop dstat glances
+  ```
+
+  - **Install netdata:**
+    ```sh
+    bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+    ```
+
+- **Usage:**
+
+  - **htop:**
+    ```sh
+    htop
+    ```
+    - **Explanation:** Provides an interactive process viewer with CPU, memory, and process information.
+
+  - **nload:**
+    ```sh
+    sudo nload
+    ```
+    - **Explanation:** Monitors incoming and outgoing network traffic in real-time.
+
+  - **iotop:**
+    ```sh
+    sudo iotop
+    ```
+    - **Explanation:** Displays disk I/O usage by processes. Requires root privileges.
+
+  - **netdata:**
+    ```sh
+    sudo systemctl start netdata
+    sudo systemctl enable netdata
+    ```
+    - **Explanation:** Starts the Netdata service. Access the web interface at `http://<server-ip>:19999` for comprehensive monitoring.
+
+  - **dstat:**
+    ```sh
+    dstat
+    ```
+    - **Explanation:** Displays various system resource statistics in real-time.
+
+  - **glances:**
+    ```sh
+    glances
+    ```
+    - **Explanation:** Provides an overview of system resource usage.
+
+### Why Use These Tools?
+
+- **htop**: More user-friendly and feature-rich than the traditional `top` command.
+- **nload**: Simple and effective for monitoring real-time network traffic.
+- **iotop**: Essential for identifying processes that are heavily using disk I/O.
+- **netdata**: Provides a detailed, real-time overview of system performance via a web interface.
+- **dstat**: Combines the functionality of several resource monitoring tools into one.
+- **glances**: Offers a broad view of system resources and is easy to use.
+
+Installing and using these tools can help you keep your Linux servers running smoothly by providing real-time insights into their performance and helping you troubleshoot issues as they arise.
+
+
