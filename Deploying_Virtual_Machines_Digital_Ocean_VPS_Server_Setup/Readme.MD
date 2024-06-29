@@ -973,3 +973,80 @@ Monitoring system resources such as CPU, memory, disk I/O, and network traffic i
 Installing and using these tools can help you keep your Linux servers running smoothly by providing real-time insights into their performance and helping you troubleshoot issues as they arise.
 
 
+### How to Install Nginx on Various Linux Distributions
+
+Nginx is a powerful, high-performance web server and reverse proxy server. Here’s how to install Nginx on different Linux distributions, why you might want to install it, and how to check if it is running.
+
+#### Installation Steps
+
+##### Ubuntu 20.04, 22.04 / Debian 10, 11, 12
+- **Update Package List and Install Nginx:**
+  ```sh
+  sudo apt update
+  sudo apt install nginx
+  ```
+
+- **Start and Enable Nginx:**
+  ```sh
+  sudo systemctl start nginx
+  sudo systemctl enable nginx
+  ```
+
+##### CentOS 7, 8, 9 / AlmaLinux 8
+- **Install EPEL Repository (if not already installed):**
+  ```sh
+  sudo yum install epel-release -y
+  ```
+  - **For CentOS 8/9 and AlmaLinux 8:**
+  ```sh
+  sudo dnf install epel-release -y
+  ```
+
+- **Install Nginx:**
+  ```sh
+  sudo yum install nginx -y
+  ```
+  - **For CentOS 8/9 and AlmaLinux 8:**
+  ```sh
+  sudo dnf install nginx -y
+  ```
+
+- **Start and Enable Nginx:**
+  ```sh
+  sudo systemctl start nginx
+  sudo systemctl enable nginx
+  ```
+
+### Why Install Nginx?
+
+- **High Performance:** Nginx is known for its high performance and low resource consumption, making it ideal for serving static content and handling many concurrent connections.
+- **Reverse Proxy:** It can be used as a reverse proxy to distribute traffic among multiple backend servers, enhancing scalability and redundancy.
+- **Load Balancing:** Nginx supports various load balancing algorithms.
+- **Security:** It offers security features such as request rate limiting, access control, and SSL/TLS termination.
+- **Ease of Configuration:** Nginx has a straightforward configuration syntax.
+
+### Checking if Nginx is Running
+
+- **Check Nginx Service Status:**
+  ```sh
+  sudo systemctl status nginx
+  ```
+  - **Explanation:** This command shows the status of the Nginx service, including whether it is active (running) or inactive (stopped).
+
+- **Check if Nginx is Listening on Port 80:**
+  ```sh
+  sudo lsof -i :80
+  ```
+  - **Explanation:** This command lists open files and the processes that opened them, filtering for processes listening on port 80.
+
+### Using curl to Check Nginx
+
+- **curl Command:**
+  ```sh
+  curl 127.0.0.1:80
+  ```
+  - **Explanation:** This command sends an HTTP GET request to the local server. If Nginx is running correctly, you should see the default Nginx welcome page HTML content.
+
+By following these steps, you can install Nginx on your Linux distribution, verify that it is running, and confirm that it is serving web pages correctly.
+
+
