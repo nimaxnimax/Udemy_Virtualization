@@ -623,3 +623,60 @@ By using these tools, you can gain deep insights into your droplet's performance
 By following these steps and understanding the options, you can effectively create and manage a VPS on Digital Ocean tailored to your specific needs.
 
 
+### How to Check Current Linux Distribution and Version
+
+#### Ubuntu 20.04, 22.04
+- **Command:**
+  ```sh
+  lsb_release -a
+  ```
+- **Explanation:** The `lsb_release` command displays LSB (Linux Standard Base) information about the distribution, including the description and release version.
+
+- **Command:**
+  ```sh
+  cat /etc/os-release
+  ```
+- **Explanation:** The `cat /etc/os-release` command outputs detailed information about the operating system, including the name and version.
+
+#### Debian 10 (Buster), 11 (Bullseye), 12 (Bookworm)
+- **Command:**
+  ```sh
+  lsb_release -a
+  ```
+- **Explanation:** Similar to Ubuntu, `lsb_release -a` provides detailed information about the Debian distribution and version.
+
+- **Command:**
+  ```sh
+  cat /etc/os-release
+  ```
+- **Explanation:** This command reads the `/etc/os-release` file to provide comprehensive details about the Debian OS version.
+
+#### CentOS 7, 8, 9
+- **Command:**
+  ```sh
+  cat /etc/centos-release
+  ```
+- **Explanation:** The `cat /etc/centos-release` command outputs the CentOS version information.
+
+- **Command:**
+  ```sh
+  cat /etc/os-release
+  ```
+- **Explanation:** This command displays the CentOS version along with other OS details.
+
+#### AlmaLinux 8
+- **Command:**
+  ```sh
+  cat /etc/os-release
+  ```
+- **Explanation:** The `cat /etc/os-release` command provides detailed information about the AlmaLinux distribution and version.
+
+- **Command:**
+  ```sh
+  cat /etc/redhat-release
+  ```
+- **Explanation:** Since AlmaLinux is a RHEL (Red Hat Enterprise Linux) fork, this command also outputs the AlmaLinux version information.
+
+Use the above commands to determine the Linux distribution and version on various systems, ensuring you have the correct information for system management and troubleshooting.
+
+
